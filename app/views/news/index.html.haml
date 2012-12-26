@@ -1,0 +1,10 @@
+%div{:class=>"container"}
+  - @news.each do |news|
+    %div{:class=>'news'}
+      %div{:class=>'news-title'}
+        %h1= news.title
+      %div{:class=>'news-description'}
+        %h1= news.description
+      %div{:class=>'news-footer'}
+        %h1= news.created_at
+

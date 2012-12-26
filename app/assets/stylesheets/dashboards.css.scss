@@ -1,0 +1,280 @@
+// Place all the styles related to the Dashboards controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  background: url("/images/bg.png");
+  background-origin: border;
+} 
+
+#expand {
+  //background: url;
+  //margin: 10px;
+  //margin-top: 50px;
+  //
+  //background: url("/images/setting.png") no-repeat;
+  //width: 24px;
+  //height: 24px;
+  //float:right;
+  //&:hover {
+  //  background-position: -24px 0px;
+  //}
+}
+
+.content {
+  width: 100%;
+  max-width: 100%;
+  .main {
+    position: relative;
+    top: 0px;
+
+    //background: rgb(0, 0, 0);
+    /* RGBa with 0.6 opacity */
+    background: rgba(0, 0, 0, 0.3);
+    height: auto;
+    //background-color: #4169e1;
+    width: 986px  !important;
+    margin: auto;
+  }
+
+  .head {
+    position: relative;
+    width: 986px  !important;
+    margin: auto;
+    margin-top: -10px;
+    padding: 0;
+    width: 100%;
+    height: 80px;
+    background-image: linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+    background-image: -o-linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+    background-image: -moz-linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+    background-image: -webkit-linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+    background-image: -ms-linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+
+    background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0.17, rgb(242,244,245)),
+      color-stop(0.59, rgb(252,255,253))
+    );
+    border-radius: 15px 15px 0 0;
+
+
+    .logo {
+      float:left;
+      width: auto;
+      height: auto;
+      padding: 4px;
+      a:hover {
+        background: none !important;
+      }
+    }
+  }
+  #login-form {
+    position: relative;
+    top: 80px;
+    left: 45px;
+    z-index: 1000;
+    //opacity: 0.7;
+    float: right;
+    width: 250px;
+    line-height: 32px;
+    background-image: linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+    background-image: -o-linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+    background-image: -moz-linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+    background-image: -webkit-linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+    background-image: -ms-linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+
+    background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0.17, rgb(242,244,245)),
+      color-stop(0.59, rgb(252,255,253))
+    );
+    //border: 1px solid silver;
+    padding: 3px;
+    border-radius: 0px 0px 5px 5px;
+    label{
+      font-size: 1.0em;
+      font-weight: bold;
+      color: blue;
+      float: left;
+    }
+    input{
+      background-color: #f0ffee;
+      border-radius: 8px;
+      float:right;
+    }
+    input:focus{
+      border-radius: 8px;
+    }
+    a{
+      color: #000000;
+    }
+  }
+
+  .nav {
+    position: relative;
+    width: 986px !important;
+    margin: auto;
+    top: 0px;
+    height: 32px;
+    background-image: linear-gradient(bottom, rgb(209,209,209) 17%, rgb(252,255,253) 69%);
+    background-image: -o-linear-gradient(bottom, rgb(209,209,209) 17%, rgb(252,255,253) 69%);
+    background-image: -moz-linear-gradient(bottom, rgb(209,209,209) 17%, rgb(252,255,253) 69%);
+    background-image: -webkit-linear-gradient(bottom, rgb(209,209,209) 17%, rgb(252,255,253) 69%);
+    background-image: -ms-linear-gradient(bottom, rgb(209,209,209) 17%, rgb(252,255,253) 69%);
+
+    background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0.17, rgb(209,209,209)),
+      color-stop(0.69, rgb(252,255,253))
+    );
+    border-top: 3px solid silver;
+    //border-radius: 0 0 15px 15px;
+      ul {
+        list-style: none;
+        width: 100%;
+        float: right;
+        display: block;
+        margin: 0px -10px;
+        position: relative;
+        top: -3px;
+        padding: 0px;
+
+        li {
+          opacity: 0.6;
+          text-align: center;
+          padding: 5px;
+          background-image: linear-gradient(bottom, rgb(209,209,209) 17%, rgb(252,255,253) 69%);
+          background-image: -o-linear-gradient(bottom, rgb(209,209,209) 17%, rgb(252,255,253) 69%);
+          background-image: -moz-linear-gradient(bottom, rgb(209,209,209) 17%, rgb(252,255,253) 69%);
+          background-image: -webkit-linear-gradient(bottom, rgb(209,209,209) 17%, rgb(252,255,253) 69%);
+          background-image: -ms-linear-gradient(bottom, rgb(209,209,209) 17%, rgb(252,255,253) 69%);
+
+          background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0.17, rgb(209,209,209)),
+            color-stop(0.69, rgb(252,255,253))
+          );
+          line-height: 20px;
+          float: left;
+          height: 20px;
+          width: 100px;
+          margin: auto;
+          border-right: 1px solid silver;
+          a {
+            color: #1e90ff;
+            text-overflow: 10;
+            font-size: 16px;
+            font-family: snazzy;
+            font-variant: all-petite-caps;
+            font-weight: normal;
+            background:  none;
+            text-decoration: none;
+          }
+        }
+        li:hover {
+          opacity: 1;
+        }
+        .last {
+          float: right;
+          margin-right: 23px;
+          border-right: none;
+
+        }
+        .current {
+          opacity: 1;
+        }
+      }
+  }
+  .footer {
+    width: 986px;
+    height: 50px;
+    margin: auto;
+    background-image: linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+    background-image: -o-linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+    background-image: -moz-linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+    background-image: -webkit-linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+    background-image: -ms-linear-gradient(bottom, rgb(242,244,245) 17%, rgb(252,255,253) 59%);
+
+    background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0.17, rgb(242,244,245)),
+      color-stop(0.59, rgb(252,255,253))
+    );
+    position: relative;
+    top: -45px;
+    border-radius: 0 0 15px 15px;
+  }
+
+  .container {
+    height: 900px;
+    .news {
+      margin: 15px;
+      //border-radius: 10px;
+      border: 1px solid #87ceeb;
+      background-color: silver;
+      float: left;
+      width: 60%;
+      .news-title {
+        margin: 0px;
+        position: relative;
+        padding: 5px;
+        top: 0px;
+        width: 98.3%;
+        height: 30px;
+        //border-radius: 10px 10px 0 0;
+        border-top: 1px solid #000000;
+        background: rgba(255, 255, 255, 1);
+        h1 {
+          font-size: 20px !important;
+          color: #000000 !important;
+          opacity: 1 !important;
+          font-weight: bold;
+        }
+      }
+      .news-description {
+        margin: 0px;
+        position: relative;
+        //padding: 5px;
+        top: 0px;
+        width: 100%;
+        height: 30px;
+        border-top: 1px solid silver;
+        h1 {
+          font-size: 18px !important;
+          color: #ffffff !important;
+          opacity: 1 !important;
+          font-weight: bolder;
+        }
+      }
+
+      .news-footer {
+        background: rgba(255, 255, 255, 1);
+        margin: 0px;
+        position: relative;
+        //padding: 2px;
+        //top: px;
+        width: 100%;
+        height: 25px;
+        //border-radius: 0 0 10px 10px;
+
+        border-bottom: 1px solid #000000;
+        h1 {
+          font-size: 14px !important;
+          color: #000000 !important;
+          opacity: 1 !important;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}

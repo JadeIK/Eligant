@@ -1,0 +1,40 @@
+%div{:class=>"head"}
+
+
+  %div{:class=>"logo"}
+    %a{:href=>"/"}
+      %img{:src=>"/images/elegant-logo.png"}
+  %a{:href=>"#", :id=>"expand", :class=> "i_login", :onclick=>"toggle('login-form');" }
+    -#%div{:id=> "login-form"}
+    -#  %label Login:
+    -#  %input{:type=>'text'}
+    -#  %br
+    -#  %label Password:
+    -#  %input{:type=>'password'}
+    -#  %br
+    -#  %input{:type=>'submit', :value=>'Login'}
+    -#  %a{:href=>'#'} Forgot password?
+
+%div{:class=>"nav"}
+  %ul{:class=>"nav-items"}
+    %li{:class => "current"}
+      %i{:class=>"i_news"}
+      %a{:href=>"#"} Новости
+    %li{:class => ""}
+      %i{:class=>"i_programm"}
+      %a{:href=>"#"} Программы
+    %li
+      %i{:class=>"i_game"}
+      %a{:href=>"#"} Игры
+    %li
+      %i{:class=>"i_film"}
+      %a{:href=>"#"} Фильмы
+    %li
+      %i{:class=>"i_musik"}
+      %a{:href=>"#"} Музыка
+    %li
+      %i{:class=>"i_forum"}
+      %a{:href=>"#"} Форум
+    %li{:class => "last"}
+      %i{:class=>"i_profile"}
+      %a{:href=>"#"} Профиль
