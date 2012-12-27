@@ -39,9 +39,8 @@ group :production do
 end
 
 group :development do
-  gem 'capistrano'
-  gem 'capistrano-ext'
-  gem 'capistrano-colors'
+  gem 'capistrano', "~>2.13.4"
+  gem 'capistrano-ext', "~>1.2.1"
   gem 'rvm-capistrano'
 end
 
