@@ -21,12 +21,13 @@ role :app, domain
 role :db,  domain, :primary => true
 
 before 'deploy:setup', 'rvm:install_rvm', 'rvm:install_ruby'
-after 'deploy:update','deploy:cleanup'
-after 'deploy:update_code', :roles => :app do
-  # Здесь для примера вставлен только один конфиг с приватными данными - database.yml. Обычно для таких вещей создают папку /srv/myapp/shared/config и кладут файлы туда. При каждом деплое создаются ссылки на них в нужные места приложения.
-  run "rm -f #{current_release}/config/database.yml"
-  run "ln -s #{deploy_to}/shared/config/database.yml #{current_release}/config/database.yml"
-end
+#
+#after 'deploy:update_code', :roles => :app do
+#  # Здесь для примера вставлен только один конфиг с приватными данными - database.yml. Обычно для таких вещей создают папку /srv/myapp/shared/config и кладут файлы туда. При каждом деплое создаются ссылки на них в нужные места приложения.
+#  run "rm -f #{current_release}/config/database.yml"
+#  #run "chmod +x -f #{current_release}/config/database.yml"
+#  run "ln -s #{deploy_to}/shared/config/database.yml #{current_release}/config/database.yml"
+#end
 
 
 # Далее идут правила для перезапуска unicorn. Их стоит просто принять на веру - они работают.
@@ -36,7 +37,7 @@ namespace :deploy do
     run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D; fi"
   end
   task :start do
-    run "cd #{current_path} && bundle exec unicorn_rails -c #{unicorn_conf} -E #{rails_env} -D"
+    run "cd #{current_path} && bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D"
   end
   task :stop do
     run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -QUIT `cat #{unicorn_pid}`; fi"
