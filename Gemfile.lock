@@ -220,4 +220,4 @@ DEPENDENCIES
   sqlite3
   state_machine (~> 1.1.2)
   uglifier (>= 1.0.3)
-  unicorn (~> 3.6.2)
+  unicorn
