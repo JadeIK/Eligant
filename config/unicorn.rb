@@ -17,9 +17,9 @@ stdout_path log_file
 
 #GC.copy_on_write_friendly = true if GC.respond_to?(:copy_on_write_friendly=) # Решительно не уверен, что значит эта строка, но я решил ее оставить.
 #
-#before_exec do |server|
-#  ENV["BUNDLE_GEMFILE"] = "#{rails_root}/Gemfile"
-#end
+before_exec do |server|
+  ENV["BUNDLE_GEMFILE"] = "#{rails_root}/Gemfile"
+end
 
 before_fork do |server, worker|
   # Перед тем, как создать первый рабочий процесс, мастер отсоединяется от базы.
