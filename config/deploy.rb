@@ -5,7 +5,7 @@ require 'capistrano/ext/multistage'
 set :application, "jade-cms_production"
 
 set :scm, :git
-set :repository,  "git@github.com:JadeIK/Eligant.git"
+set :repository,  "https://github.com/JadeIK/Eligant.git"
 
 set :stages, %w(production development)
 set :default_stage, "production"
