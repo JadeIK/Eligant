@@ -15,8 +15,10 @@ development:
   database: Eligant_development
   pool: 5
   username: root
-  password:
+  password: frog1987
   socket: /var/run/mysqld/mysqld.sock
+
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -28,7 +30,7 @@ test:
   database: Eligant_test
   pool: 5
   username: root
-  password:
+  password: frog1987
   socket: /var/run/mysqld/mysqld.sock
 
 production:
@@ -38,5 +40,5 @@ production:
   database: Eligant_production
   pool: 5
   username: root
-  password:
+  password: frog1987
   socket: /var/run/mysqld/mysqld.sock
