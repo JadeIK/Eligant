@@ -10,5 +10,11 @@
     %div{:class=>'content'}
       = render "header"
       %div{:class=>'main'}
-        = yield
+        %div{:class=>"container"}
+          #content
+            .col1
+              = render "left_side"
+            .spin
+            .col2
+              = yield
       = render "footer"

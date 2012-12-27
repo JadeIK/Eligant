@@ -15,7 +15,7 @@ development:
   database: Eligant_development
   pool: 5
   username: root
-  password: frog1987
+  password:
   socket: /var/run/mysqld/mysqld.sock
 
 
@@ -30,7 +30,7 @@ test:
   database: Eligant_test
   pool: 5
   username: root
-  password: frog1987
+  password:
   socket: /var/run/mysqld/mysqld.sock
 
 production:
@@ -40,5 +40,5 @@ production:
   database: Eligant_production
   pool: 5
   username: root
-  password: frog1987
+  password:
   socket: /var/run/mysqld/mysqld.sock

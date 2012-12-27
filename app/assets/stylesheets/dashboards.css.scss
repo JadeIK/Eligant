@@ -287,6 +287,37 @@ body {
         height: 92%;
         margin: 10px;
         margin-right: 5px;
+        padding: 5px;
+        box-shadow: 0px 0 10px rgba(0, 0, 181, 0.8);
+
+        .left-side-content {
+          width: 99% !important;
+          //margin: auto !important;
+          height: 60px;
+          position: none !important;
+          background-color: #fff8dc !important;
+
+          margin-bottom: 5px;
+
+          .left-side-head {
+            float: left;
+            width: 30%;
+            height: 60px;
+            background-color: royalBlue;
+          }
+
+          .left-side-inner {
+            float: left;
+            width: 70%;
+            height: 50px;
+          }
+
+          .left-side-footer {
+            float: left;
+            width: 70%;
+            height: 10px;
+          }
+        }
       }
 
       .spin {
@@ -304,6 +335,8 @@ body {
         margin: 10px;
         margin-left: 5px;
       }
+
+
     }
   }
 }
