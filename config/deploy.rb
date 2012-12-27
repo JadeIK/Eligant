@@ -33,13 +33,28 @@ before 'deploy:setup', 'rvm:install_rvm', 'rvm:install_ruby'
 # Далее идут правила для перезапуска unicorn. Их стоит просто принять на веру - они работают.
 # В случае с Rails 3 приложениями стоит заменять bundle exec unicorn_rails на bundle exec unicorn
 namespace :deploy do
-  task :restart do
-    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D; fi"
+  desc "Custom AceMoney deployment: stop."
+  task :stop, :roles => :app do
+
+    invoke_command "cd #{current_path};./script/ferret_server -e production stop"
+    invoke_command "service thin stop"
   end
-  task :start do
-    run "cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D"
+
+  desc "Custom AceMoney deployment: start."
+  task :start, :roles => :app do
+
+    invoke_command "cd #{current_path};./script/ferret_server -e production start"
+    invoke_command "service thin start"
   end
-  task :stop do
-    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -QUIT `cat #{unicorn_pid}`; fi"
+
+  # Need to define this restart ALSO as 'cap deploy' uses it
+  # (Gautam) I dont know how to call tasks within tasks.
+  desc "Custom AceMoney deployment: restart."
+  task :restart, :roles => :app do
+
+    invoke_command "cd #{current_path};./script/ferret_server -e production stop"
+    invoke_command "service thin stop"
+    invoke_command "cd #{current_path};./script/ferret_server -e production start"
+    invoke_command "service thin start"
   end
 end

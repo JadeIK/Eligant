@@ -11,7 +11,8 @@ gem "rails3-generators", "~> 0.17.6"
 gem "haml-rails", "~> 0.3.5"
 gem "jquery-rails", "~> 2.1.2"
 gem "paperclip", "~> 3.2.0"
-gem 'unicorn'
+#gem 'unicorn'
+gem 'thin'
 gem "formtastic", "~> 2.2.1"
 gem 'country_select'
 gem "meta_programming", "~> 0.2.1"
@@ -38,6 +39,7 @@ group :development do
   gem 'capistrano', "~>2.13.4"
   gem 'capistrano-ext', "~>1.2.1"
   gem 'rvm-capistrano'
+
 end
 
 
