@@ -7,13 +7,13 @@ err_log    = "#{rails_root}/log/unicorn_error.log"
 old_pid    = pid_file + '.oldbin'
 
 timeout 30
-worker_processes 4 # Здесь тоже в зависимости от нагрузки, погодных условий и текущей фазы луны
+worker_processes 1 # Здесь тоже в зависимости от нагрузки, погодных условий и текущей фазы луны
 listen socket_file, :backlog => 64
 pid pid_file
 stderr_path err_log
 stdout_path log_file
 
-preload_app true # Мастер процесс загружает приложение, перед тем, как плодить рабочие процессы.
+#preload_app true # Мастер процесс загружает приложение, перед тем, как плодить рабочие процессы.
 
 #GC.copy_on_write_friendly = true if GC.respond_to?(:copy_on_write_friendly=) # Решительно не уверен, что значит эта строка, но я решил ее оставить.
 #
