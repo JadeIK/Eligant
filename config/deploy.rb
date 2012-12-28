@@ -1,60 +1,45 @@
-require 'rvm/capistrano' # Для работы rvm
-require 'bundler/capistrano' # Для работы bundler. При изменении гемов bundler автоматически обновит все гемы на сервере, чтобы они в точности соответствовали гемам разработчика. 
+gem 'capistrano-ext'
+require 'rvm/capistrano'
+require 'capistrano/ext/multistage'
 
 set :application, "eligant_production"
-set :rails_env, "production"
-set :domain, "jade@93.189.40.170" # Это необходимо для деплоя через ssh. Именно ради этого я настоятельно советовал сразу же залить на сервер свой ключ, чтобы не вводить паролей.
-set :deploy_to, "/home/jade/#{application}"
+
+set :scm, :git
+set :repository, "git@github.com:JadeIK/Eligant.git"
+
+set :stages, %w(production development)
+set :default_stage, "production"
+
 set :use_sudo, false
-set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
-set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
+set :keep_releases, 5
+set :no_reboot, true
 
-set :rvm_ruby_string, '1.9.3' # Это указание на то, какой Ruby интерпретатор мы будем использовать.
+set :app_server, :unicorn
+set (:unicorn_conf) {"#{current_path}/config/unicorn.rb"}
+set (:unicorn_pid) {"#{deploy_to}/shared/pids/unicorn.pid"}
 
-set :scm, :git # Используем git. Можно, конечно, использовать что-нибудь другое - svn, например, но общая рекомендация для всех кто не использует git - используйте git. 
-set :repository,  "git@github.com:JadeIK/Eligant.git" # Путь до вашего репозитария. Кстати, забор кода с него происходит уже не от вас, а от сервера, поэтому стоит создать пару rsa ключей на сервере и добавить их в deployment keys в настройках репозитария.
-set :branch, "master" # Ветка из которой будем тянуть код для деплоя.
-#set :deploy_via, :remote_cache # Указание на то, что стоит хранить кеш репозитария локально и с каждым деплоем лишь подтягивать произведенные изменения. Очень актуально для больших и тяжелых репозитариев.
-
-role :web, domain
-role :app, domain
-role :db,  domain, :primary => true
-
-before 'deploy:setup', 'rvm:install_rvm', 'rvm:install_ruby'
-#
-#after 'deploy:update_code', :roles => :app do
-#  # Здесь для примера вставлен только один конфиг с приватными данными - database.yml. Обычно для таких вещей создают папку /srv/myapp/shared/config и кладут файлы туда. При каждом деплое создаются ссылки на них в нужные места приложения.
-#  run "rm -f #{current_release}/config/database.yml"
-#  #run "chmod +x -f #{current_release}/config/database.yml"
-#  run "ln -s #{deploy_to}/shared/config/database.yml #{current_release}/config/database.yml"
-#end
-
-
-# Далее идут правила для перезапуска unicorn. Их стоит просто принять на веру - они работают.
-# В случае с Rails 3 приложениями стоит заменять bundle exec unicorn_rails на bundle exec unicorn
 namespace :deploy do
-  desc "Custom AceMoney deployment: stop."
-  task :stop, :roles => :app do
-
-    invoke_command "cd #{current_path};./script/ferret_server -e production stop"
-    invoke_command "service thin stop"
+  task :start do
+    run "cd #{current_path} && unicorn -c #{unicorn_conf} -E #{rails_env} -D"
   end
-
-  desc "Custom AceMoney deployment: start."
-  task :start, :roles => :app do
-
-    invoke_command "cd #{current_path};./script/ferret_server -e production start"
-    invoke_command "service thin start"
+  task :stop do
+    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -9 `cat #{unicorn_pid}`; fi"
   end
+  task :restart do
+    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -9 `cat #{unicorn_pid}`; fi"
+    run "cd #{current_path} && unicorn -c #{unicorn_conf} -E #{rails_env} -D"
+  end
+  #task :precompile do
+  # run "cd #{current_path} && bundle exec rake assets:precompile"
+  #end
+end
 
-  # Need to define this restart ALSO as 'cap deploy' uses it
-  # (Gautam) I dont know how to call tasks within tasks.
-  desc "Custom AceMoney deployment: restart."
-  task :restart, :roles => :app do
-
-    invoke_command "cd #{current_path};./script/ferret_server -e production stop"
-    invoke_command "service thin stop"
-    invoke_command "cd #{current_path};./script/ferret_server -e production start"
-    invoke_command "service thin start"
+namespace :bundle do
+  task :install do
+    run "cd #{latest_release} && bundle install"
   end
 end
+
+before 'deploy:restart', 'deploy:migrate'
+after "deploy:update", "deploy:cleanup"
+after "deploy:update_code", "bundle:install"

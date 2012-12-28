@@ -1,44 +1,4 @@
-load 'deploy' if respond_to?(:namespace)
-
-set :application, "eligant_production"
-set :user, "jade"
-set :use_sudo, false
-
-set :scm, :git
-set :repository,  "git@github.com:JadeIK/Eligant.git"
-set :deploy_via, :remote_cache
-set :deploy_to, "/home/#{user}/#{application}"
-
-role :app, "93.189.40.170"
-role :web, "93.189.40.170"
-role :db,  "93.189.40.170", :primary => true
-
-set :runner, user
-set :admin_runner, user
-
-namespace :deploy do
-  task :start, :roles => [:web, :app] do
-    run "cd #{deploy_to}/current/ && nohup thin -C thin/production_config.yml -R config.ru start"
-  end
-
-  task :stop, :roles => [:web, :app] do
-    run "cd #{deploy_to}/current/ && nohup thin -C thin/production_config.yml -R config.ru stop"
-  end
-
-  task :restart, :roles => [:web, :app] do
-    deploy.stop
-    deploy.start
-  end
-
-  # This will make sure that Capistrano doesn't try to run rake:migrate (this is not a Rails project!)
-  task :cold do
-    deploy.update
-    deploy.start
-  end
-end
-
-namespace :acoplet do
-  task :log do
-    run "cat #{deploy_to}/current/log/thin.log"
-  end
-end
+load 'deploy'
+# Uncomment if you are using Rails' asset pipeline
+# load 'deploy/assets'
+load 'config/deploy' # remove this line to skip loading any of the default task

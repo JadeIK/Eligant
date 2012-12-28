@@ -11,8 +11,7 @@ gem "rails3-generators", "~> 0.17.6"
 gem "haml-rails", "~> 0.3.5"
 gem "jquery-rails", "~> 2.1.2"
 gem "paperclip", "~> 3.2.0"
-#gem 'unicorn'
-gem 'thin'
+gem 'unicorn'
 gem "formtastic", "~> 2.2.1"
 gem 'country_select'
 gem "meta_programming", "~> 0.2.1"
