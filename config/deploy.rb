@@ -10,13 +10,13 @@ set :repository, "git@github.com:JadeIK/Eligant.git"
 set :stages, %w(production development)
 set :default_stage, "production"
 
-set :use_sudo, false
+set :use_sudo, true
 set :keep_releases, 5
 set :no_reboot, true
 
 set :app_server, :unicorn
 set (:unicorn_conf) {"#{current_path}/config/unicorn.rb"}
-set (:unicorn_pid) {"#{deploy_to}/shared/pids/unicorn.pid"}
+set (:unicorn_pid) {"#{deploy_to}/tmp/pids/unicorn.pid"}
 
 namespace :deploy do
   task :start do
