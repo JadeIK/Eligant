@@ -1,8 +1,8 @@
 rails_root = File.dirname(__FILE__).gsub(/config$/, "")
-pid_file = "#{rails_root}tmp/pids/unicorn.pid"
-socket_file= "#{rails_root}tmp/unicorn.sock"
-log_file = "#{rails_root}log/unicorn.log"
-err_log = "#{rails_root}log/unicorn_error.log"
+pid_file = "#{rails_root}/tmp/pids/unicorn.pid"
+socket_file= "#{rails_root}/tmp/unicorn.sock"
+log_file = "#{rails_root}/log/unicorn.log"
+err_log = "#{rails_root}/log/unicorn_error.log"
 
 timeout 30
 worker_processes 2
